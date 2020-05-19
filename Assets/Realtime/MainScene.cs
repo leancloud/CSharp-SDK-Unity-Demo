@@ -32,6 +32,7 @@ public class MainScene : MonoBehaviour {
 
     void OnDestroy() {
         Realtime.Client.OnMessage -= OnMessage;
+        _ = Realtime.Client.Close();
     }
 
     public async void OnSendClicked() {
