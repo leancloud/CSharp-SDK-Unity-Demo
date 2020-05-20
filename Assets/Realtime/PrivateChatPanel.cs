@@ -35,6 +35,7 @@ public class PrivateChatPanel : MonoBehaviour {
         }
         if (!privateConvs.TryGetValue(clientId, out LCIMConversation conv)) {
             conv = await Realtime.Client.CreateConversation(new string[] { clientId });
+            privateConvs.Add(clientId, conv);
         }
         try {
             LCIMTextMessage message = new LCIMTextMessage(text);
@@ -49,10 +50,10 @@ public class PrivateChatPanel : MonoBehaviour {
         }
     }
 
-    private void OnMessage(LCIMConversation conv, LCIMMessage msg) {
-        if (conv.MemberIds.Count == 2 &&
-            msg is LCIMTextMessage textMessage) {
-            chatScrollView.AddPrivateMessage(msg.FromClientId, Realtime.Client.Id, textMessage);
+    private void OnMessage(LCIMConversation conversation, LCIMMessage message) {
+        if (conversation.MemberIds.Count == 2 &&
+            message is LCIMTextMessage textMessage) {
+            chatScrollView.AddPrivateMessage(message.FromClientId, Realtime.Client.Id, textMessage);
         }
     }
 

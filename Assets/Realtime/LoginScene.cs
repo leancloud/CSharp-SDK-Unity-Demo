@@ -9,6 +9,10 @@ using LeanCloud.Storage;
 public class LoginScene : MonoBehaviour {
     public InputField clientIdInputField;
 
+    void Awake() {
+        Screen.SetResolution(1024, 768, false);    
+    }
+
     public async void OnLoginClicked() {
         string clientId = clientIdInputField.text;
         if (string.IsNullOrEmpty(clientId)) {
@@ -18,7 +22,7 @@ public class LoginScene : MonoBehaviour {
         Realtime.Init(clientId);
         try {
             await Realtime.Client.Open();
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Chat");
         } catch (LCException e) {
             // TODO 处理错误
             Debug.Log($"{e.Code}, {e.Message}");

@@ -6,14 +6,12 @@ using UnityEngine.UI;
 using LeanCloud.Storage;
 using LeanCloud.Realtime;
 
-public class MainScene : MonoBehaviour {
+public class WorldChatPanel : MonoBehaviour {
+    public ChatScrollView chatScrollView;
     public InputField messageInputField;
-
-    public WorldChatRoomPanel chatRoomPanel;
 
     private LCIMChatRoom chatRoom;
 
-    // Start is called before the first frame update
     async void Start() {
         LCIMConversationQuery query = new LCIMConversationQuery(Realtime.Client);
         query.WhereEqualTo("tr", true)
@@ -32,7 +30,6 @@ public class MainScene : MonoBehaviour {
 
     void OnDestroy() {
         Realtime.Client.OnMessage -= OnMessage;
-        _ = Realtime.Client.Close();
     }
 
     public async void OnSendClicked() {
@@ -43,14 +40,13 @@ public class MainScene : MonoBehaviour {
 
         LCIMTextMessage message = new LCIMTextMessage(text);
         await chatRoom.Send(message);
-        chatRoomPanel.AddMessage(message);
+        chatScrollView.AddMessage(message);
     }
 
-    private void OnMessage(LCIMConversation conv, LCIMMessage message) {
-        Debug.Log($"on message: {message.Id}");
-        if (conv is LCIMChatRoom &&
+    private void OnMessage(LCIMConversation conversation, LCIMMessage message) {
+        if (conversation is LCIMChatRoom &&
             message is LCIMTextMessage textMessage) {
-            chatRoomPanel.AddMessage(textMessage);
+            chatScrollView.AddMessage(textMessage);
         }
     }
 }

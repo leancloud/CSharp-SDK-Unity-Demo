@@ -20,6 +20,6 @@ public class ChatScrollView : MonoBehaviour {
     private void AddMessage(string text) {
         Text message = Instantiate(messagePrefab).GetComponent<Text>();
         message.text = text;
-        message.transform.parent = contentObject.transform;
+        message.transform.SetParent(contentObject.transform);
     }
 }
