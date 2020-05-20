@@ -53,6 +53,7 @@ public class PrivateChatPanel : MonoBehaviour {
     private void OnMessage(LCIMConversation conversation, LCIMMessage message) {
         if (conversation.MemberIds.Count == 2 &&
             message is LCIMTextMessage textMessage) {
+            _ = conversation.Read();
             chatScrollView.AddPrivateMessage(message.FromClientId, Realtime.Client.Id, textMessage);
         }
     }

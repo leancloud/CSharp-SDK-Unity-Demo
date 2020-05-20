@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Realtime/Login.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Realtime/Main.unity
+    path: Assets/Realtime/Chat.unity
     guid: fab48625064734e7c9eac4d01eb93784
   m_configObjects: {}

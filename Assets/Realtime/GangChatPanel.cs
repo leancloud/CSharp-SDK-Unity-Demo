@@ -50,6 +50,7 @@ public class GangChatPanel : MonoBehaviour {
     private void OnMessage(LCIMConversation conversation, LCIMMessage message) {
         if (gangConversation.Id == conversation.Id &&
             message is LCIMTextMessage textMessage) {
+            _ = conversation.Read();
             chatScrollView.AddMessage(textMessage);
         }
     }

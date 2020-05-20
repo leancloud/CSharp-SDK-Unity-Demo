@@ -19,11 +19,8 @@ public class WorldChatPanel : MonoBehaviour {
         chatRoom = (await query.Find()).First() as LCIMChatRoom;
         try {
             await chatRoom.Join();
-            // TODO 激活世界聊天面板
-
             Realtime.Client.OnMessage += OnMessage;
         } catch (LCException e) {
-            // TODO 加入聊天室失败
             Debug.LogError($"{e.Code}, {e.Message}");
         }
     }
