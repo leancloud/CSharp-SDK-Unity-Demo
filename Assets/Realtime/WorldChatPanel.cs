@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using LeanCloud.Storage;
+using LeanCloud;
 using LeanCloud.Realtime;
 
 public class WorldChatPanel : MonoBehaviour {

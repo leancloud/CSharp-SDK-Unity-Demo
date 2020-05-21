@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using LeanCloud.Realtime;
-using LeanCloud.Storage;
+using LeanCloud;
 
 public class GangChatPanel : MonoBehaviour {
     public Text nameText;

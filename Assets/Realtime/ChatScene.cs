@@ -8,6 +8,7 @@ using LeanCloud.Realtime;
 
 public class ChatScene : MonoBehaviour {
     public Text idText;
+    public Text connectingText;
 
     public Toggle worldToggle;
     public Toggle gangToggle;
@@ -17,7 +18,16 @@ public class ChatScene : MonoBehaviour {
     public GameObject gangPanel;
     public GameObject privatePanel;
 
-    void Start() {
+    async void Start() {
+        worldPanel.SetActive(false);
+        gangPanel.SetActive(false);
+        privatePanel.SetActive(false);
+
+        LCUser currentUser = await LCUser.GetCurrent();
+        Hero hero = currentUser["hero"] as Hero;
+        await Realtime.Login(hero.ObjectId);
+
+        connectingText.gameObject.SetActive(false);
         idText.text = $"ID: {Realtime.Client.Id}";
 
         worldToggle.onValueChanged.AddListener(selected => TogglePanel());
@@ -28,9 +38,9 @@ public class ChatScene : MonoBehaviour {
     }
 
     private void TogglePanel() {
-        worldToggle.GetComponent<Image>().color = worldToggle.isOn ? Color.red : Color.white;
-        gangToggle.GetComponent<Image>().color = gangToggle.isOn ? Color.red : Color.white;
-        privateToggle.GetComponent<Image>().color = privateToggle.isOn ? Color.red : Color.white;
+        worldToggle.GetComponent<Image>().color = worldToggle.isOn ? Color.blue : Color.white;
+        gangToggle.GetComponent<Image>().color = gangToggle.isOn ? Color.blue : Color.white;
+        privateToggle.GetComponent<Image>().color = privateToggle.isOn ? Color.blue : Color.white;
 
         worldPanel.SetActive(worldToggle.isOn);
         gangPanel.SetActive(gangToggle.isOn);

@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Realtime/Login.unity
+    path: Assets/Storage/Login.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Storage/Register.unity
+    guid: 27b811c43d94640b89b92470170f7128
+  - enabled: 1
+    path: Assets/Storage/CreateHero.unity
+    guid: 457643b9eef0f4b468f2cfcb8a63c3e3
+  - enabled: 1
+    path: Assets/Storage/Menu.unity
+    guid: 16780eaf2179a464e9cbb690762a54a3
   - enabled: 1
     path: Assets/Realtime/Chat.unity
     guid: fab48625064734e7c9eac4d01eb93784

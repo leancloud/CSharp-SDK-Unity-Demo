@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using LeanCloud;
 using LeanCloud.Realtime;
 
 public class ChatScrollView : MonoBehaviour {
@@ -9,12 +10,26 @@ public class ChatScrollView : MonoBehaviour {
 
     public Text messagePrefab;
 
-    public void AddMessage(LCIMTextMessage textMessage) {
-        AddMessage($"{textMessage.FromClientId}: {textMessage.Text}");
+    public async void AddMessage(LCIMTextMessage textMessage) {
+        try {
+            Hero from = await Realtime.GetHeroById(textMessage.FromClientId);
+            AddMessage($"{from.Name} : {textMessage.Text}");
+        } catch (LCException e) {
+            Debug.LogError(e);
+        }
     }
 
-    public void AddPrivateMessage(string fromId, string toId, LCIMTextMessage textMessage) {
-        AddMessage($"{fromId} -> {toId} : {textMessage.Text}");
+    public void AddSentPrivateMessage(string name, LCIMTextMessage textMessage) {
+        AddMessage($"你 -> {name} : {textMessage.Text}");
+    }
+
+    public async void AddReceivedPrivateMessage(LCIMTextMessage textMessage) {
+        try {
+            Hero from = await Realtime.GetHeroById(textMessage.FromClientId);
+            AddMessage($"{from.Name} -> 你 : {textMessage.Text}");
+        } catch (LCException e) {
+            Debug.LogError(e);
+        }
     }
 
     private void AddMessage(string text) {

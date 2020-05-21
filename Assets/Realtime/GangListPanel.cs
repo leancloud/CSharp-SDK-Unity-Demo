@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.UI;
 using LeanCloud.Realtime;
-using LeanCloud.Storage;
+using LeanCloud;
 
 public class GangListPanel : MonoBehaviour {
     public GameObject contentObject;

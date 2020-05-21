@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using LeanCloud.Storage;
+using LeanCloud;
 using LeanCloud.Realtime;
 
 public class PrivateChatPanel : MonoBehaviour {
@@ -25,28 +25,31 @@ public class PrivateChatPanel : MonoBehaviour {
     }
 
     public async void OnSendClicked() {
-        string clientId = clientIdInputField.text;
-        if (string.IsNullOrEmpty(clientId)) {
+        string name = clientIdInputField.text;
+        if (string.IsNullOrEmpty(name)) {
             return;
         }
         string text = messageInputField.text;
         if (string.IsNullOrEmpty(text)) {
             return;
         }
-        if (!privateConvs.TryGetValue(clientId, out LCIMConversation conv)) {
-            conv = await Realtime.Client.CreateConversation(new string[] { clientId });
-            privateConvs.Add(clientId, conv);
-        }
+
         try {
+            Hero hero = await Realtime.GetHeroByName(name);
+            string clientId = hero.ObjectId;
+            if (!privateConvs.TryGetValue(clientId, out LCIMConversation conv)) {
+                conv = await Realtime.Client.CreateConversation(new string[] { clientId });
+                privateConvs.Add(clientId, conv);
+            }
             LCIMTextMessage message = new LCIMTextMessage(text);
             LCIMMessageSendOptions options = new LCIMMessageSendOptions {
                 Receipt = true
             };
             await conv.Send(message, options);
             Debug.Log($"{message.Id} sent sucessfully");
-            chatScrollView.AddPrivateMessage(Realtime.Client.Id, clientId, message);
+            chatScrollView.AddSentPrivateMessage(hero.Name, message);
         } catch (LCException e) {
-            Debug.LogError($"{e.Code}, {e.Message}");
+            Debug.LogError(e);
         }
     }
 
@@ -54,7 +57,7 @@ public class PrivateChatPanel : MonoBehaviour {
         if (conversation.MemberIds.Count == 2 &&
             message is LCIMTextMessage textMessage) {
             _ = conversation.Read();
-            chatScrollView.AddPrivateMessage(message.FromClientId, Realtime.Client.Id, textMessage);
+            chatScrollView.AddReceivedPrivateMessage(textMessage);
         }
     }
 
