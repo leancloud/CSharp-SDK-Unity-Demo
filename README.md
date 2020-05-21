@@ -7,8 +7,8 @@
 
 ## 即时通讯
 
-### [世界频道](Doc/WorldChat.md)
+### [世界频道](Doc/Realtime/WorldChat.md)
 
-### [行会频道](Doc/GangChat.md)
+### [行会频道](Doc/Realtime/GangChat.md)
 
-### [私聊](Doc/PrivateChat.md)
+### [私聊](Doc/Realtime/PrivateChat.md)

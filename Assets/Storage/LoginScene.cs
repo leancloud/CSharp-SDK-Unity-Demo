@@ -58,16 +58,8 @@ public class LoginScene : MonoBehaviour {
                 SceneManager.LoadScene("CreateHero");
             }
         } catch (LCException e) {
-            Debug.LogError(e.ToString());
+            Debug.LogError(e);
             tipsText.text = e.ToString();
         }
-
-        //try {
-        //    await Realtime.Client.Open();
-        //    SceneManager.LoadScene("Chat");
-        //} catch (LCException e) {
-        //    // TODO 处理错误
-        //    Debug.Log($"{e.Code}, {e.Message}");
-        //}
     }
 }
