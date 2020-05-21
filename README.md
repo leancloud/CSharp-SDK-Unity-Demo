@@ -5,6 +5,10 @@
 
 主要功能包括：
 
+## 存储
+
+### [登录/注册，对象存储](Doc/Storage/Storage.md)
+
 ## 即时通讯
 
 ### [世界频道](Doc/Realtime/WorldChat.md)
