@@ -9,6 +9,8 @@
 
 ### [登录/注册，对象存储](Doc/Storage/Storage.md)
 
+### [排行榜](Doc/Storage/Leaderboard.md)
+
 ## 即时通讯
 
 ### [世界频道](Doc/Realtime/WorldChat.md)
