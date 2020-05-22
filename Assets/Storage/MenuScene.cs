@@ -18,4 +18,8 @@ public class MenuScene : MonoBehaviour {
     public void OnChatClicked() {
         SceneManager.LoadScene("Chat");
     }
+
+    public void OnLeaderboardClicked() {
+        SceneManager.LoadScene("Leaderboard");
+    }
 }

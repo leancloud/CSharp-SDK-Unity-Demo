@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Realtime/Chat.unity
     guid: fab48625064734e7c9eac4d01eb93784
+  - enabled: 1
+    path: Assets/Leaderboard/Leaderboard.unity
+    guid: b034a314d14eb4a1eb9052738651ae2c
   m_configObjects: {}
