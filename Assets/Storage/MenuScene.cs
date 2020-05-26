@@ -22,4 +22,10 @@ public class MenuScene : MonoBehaviour {
     public void OnLeaderboardClicked() {
         SceneManager.LoadScene("Leaderboard");
     }
+
+    public void OnLogoutClicked() {
+        LCUser.Logout();
+        PlayerPrefs.DeleteKey("token");
+        SceneManager.LoadScene("Login");
+    }
 }

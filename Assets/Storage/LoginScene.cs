@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -35,6 +36,18 @@ public class LoginScene : MonoBehaviour {
         LCObject.RegisterSubclass("Hero", () => new Hero());
     }
 
+    async void Start() {
+        string sessionToken = PlayerPrefs.GetString("token");
+        if (!string.IsNullOrEmpty(sessionToken)) {
+            try {
+                LCUser currentUser = await LCUser.BecomeWithSessionToken(sessionToken);
+                await OnLogin(currentUser);
+            } catch (LCException e) {
+                Debug.LogError(e);
+            }
+        }
+    }
+
     public void OnRegisterClicked() {
         SceneManager.LoadScene("Register");
     }
@@ -51,15 +64,20 @@ public class LoginScene : MonoBehaviour {
 
         try {
             LCUser currentUser = await LCUser.Login(username, password);
-            if (currentUser["hero"] != null) {
-                await currentUser.Fetch(includes: new string[] { "hero" });
-                SceneManager.LoadScene("Menu");
-            } else {
-                SceneManager.LoadScene("CreateHero");
-            }
+            PlayerPrefs.SetString("token", currentUser.SessionToken);
+            await OnLogin(currentUser);
         } catch (LCException e) {
             Debug.LogError(e);
             tipsText.text = e.ToString();
+        }
+    }
+
+    private async Task OnLogin(LCUser user) {
+        if (user["hero"] != null) {
+            await user.Fetch(includes: new string[] { "hero" });
+            SceneManager.LoadScene("Menu");
+        } else {
+            SceneManager.LoadScene("CreateHero");
         }
     }
 }

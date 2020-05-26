@@ -30,7 +30,8 @@ public class RegisterScene : MonoBehaviour {
             Password = password
         };
         try {
-            await user.SignUp();
+            LCUser currentUser = await user.SignUp();
+            PlayerPrefs.SetString("token", currentUser.SessionToken);
             // 注册成功
             SceneManager.LoadScene("CreateHero");
         } catch (LCException e) {
