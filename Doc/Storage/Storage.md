@@ -25,6 +25,33 @@ LCUser user = new LCUser {
 await user.SignUp();
 ```
 
+登录后可以将用户 **session token** 保存在本地，下次直接使用 **session token** 登录。
+
+```csharp
+// 保存用户 token
+PlayerPrefs.SetString("token", currentUser.SessionToken);
+```
+
+```csharp
+// 读取本地用户 token 并登录
+string sessionToken = PlayerPrefs.GetString("token");
+if (!string.IsNullOrEmpty(sessionToken)) {
+    try {
+        LCUser currentUser = await LCUser.BecomeWithSessionToken(sessionToken);
+        await OnLogin(currentUser);
+    } catch (LCException e) {
+        Debug.LogError(e);
+    }
+}
+```
+
+注销用户
+
+```csharp
+LCUser.Logout();
+PlayerPrefs.DeleteKey("token");
+```
+
 ### 对象存储
 
 通常我们会用一个专门的表来表示**游戏中的角色**，用来存储游戏人物的属性，比如：
