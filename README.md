@@ -7,7 +7,9 @@
 
 ## 存储
 
-### [登录/注册，对象存储](Doc/Storage/Storage.md)
+### [注册，登录/登出](Doc/Storage/User.md)
+
+### [对象](Doc/Storage/Object.md)
 
 ### [排行榜](Doc/Storage/Leaderboard.md)
 
