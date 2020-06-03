@@ -11,6 +11,8 @@
 
 ### [对象](Doc/Storage/Object.md)
 
+### [查询](Doc/Storage/Query.md)
+
 ### [排行榜](Doc/Storage/Leaderboard.md)
 
 ## 即时通讯
