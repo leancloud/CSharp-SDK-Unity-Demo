@@ -15,6 +15,10 @@ public class MenuScene : MonoBehaviour {
         welcomeText.text = $"欢迎<b>{hero.Name}</b>来到 LeanCloud";
     }
 
+    public void OnQueryClicked() {
+        SceneManager.LoadScene("Query");
+    }
+
     public void OnChatClicked() {
         SceneManager.LoadScene("Chat");
     }
