@@ -13,6 +13,12 @@
 
 ### [查询](Doc/Storage/Query.md)
 
+## 云引擎
+
+### [云函数](Doc/Cloud/Cloud.md)
+
+## 排行榜
+
 ### [排行榜](Doc/Storage/Leaderboard.md)
 
 ## 即时通讯
