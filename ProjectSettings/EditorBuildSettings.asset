@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Storage/Query.unity
     guid: e379bbce574f6458d86bd587bb0edfac
+  - enabled: 1
+    path: Assets/Storage/Draw.unity
+    guid: 32bd054af53644ad781da0b4c149186d
   m_configObjects: {}
