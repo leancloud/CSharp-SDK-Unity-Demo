@@ -36,5 +36,6 @@ public class ChatScrollView : MonoBehaviour {
         Text message = Instantiate(messagePrefab).GetComponent<Text>();
         message.text = text;
         message.transform.SetParent(contentObject.transform);
+        message.rectTransform.localScale = Vector3.one;
     }
 }

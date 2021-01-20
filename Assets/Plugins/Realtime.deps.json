@@ -7,16 +7,16 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "Realtime-Unity/1.0.0": {
+      "Realtime/1.0.0": {
         "dependencies": {
-          "Common-Unity": "1.0.0",
+          "Common": "1.0.0",
           "Google.Protobuf": "3.11.4",
           "NETStandard.Library": "2.0.3",
-          "Storage-Unity": "1.0.0",
+          "Storage": "1.0.0",
           "Newtonsoft.Json": "12.0.0.0"
         },
         "runtime": {
-          "Realtime-Unity.dll": {}
+          "Realtime.dll": {}
         }
       },
       "Google.Protobuf/3.11.4": {
@@ -73,17 +73,17 @@
           }
         }
       },
-      "Common-Unity/1.0.0": {
+      "Common/1.0.0": {
         "runtime": {
-          "Common-Unity.dll": {}
+          "Common.dll": {}
         }
       },
-      "Storage-Unity/1.0.0": {
+      "Storage/1.0.0": {
         "dependencies": {
-          "Common-Unity": "1.0.0"
+          "Common": "1.0.0"
         },
         "runtime": {
-          "Storage-Unity.dll": {}
+          "Storage.dll": {}
         }
       },
       "Newtonsoft.Json/12.0.0.0": {
@@ -97,7 +97,7 @@
     }
   },
   "libraries": {
-    "Realtime-Unity/1.0.0": {
+    "Realtime/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -151,12 +151,12 @@
       "path": "system.runtime.compilerservices.unsafe/4.5.2",
       "hashPath": "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
     },
-    "Common-Unity/1.0.0": {
+    "Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Storage-Unity/1.0.0": {
+    "Storage/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
